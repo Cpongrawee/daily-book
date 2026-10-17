@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Daily Book</title>
+  <desc id="desc">An ivory B on a wine-red book cover with antique-gold binding.</desc>
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#843F49"/><stop offset=".55" stop-color="#632630"/><stop offset="1" stop-color="#3F1520"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E8D5A6"/><stop offset=".5" stop-color="#C3A16A"/><stop offset="1" stop-color="#A78049"/></linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="44" fill="url(#cover)"/>
+  <rect x="15" y="15" width="226" height="226" rx="37" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M64 38h139a12 12 0 0 1 12 12v151H65a17 17 0 0 0 0 28h150" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M65 38c-13 0-20 8-20 20v155c0 10 7 16 20 16M67 40v158" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 210h139M68 218h139" stroke="#DFCCA0" stroke-width="2" opacity=".65"/>
+  <path d="m138 50 5 6-5 6-5-6z" fill="url(#gold)"/>
+  <path fill="#F7F0DF" fill-rule="evenodd" d="M94 77h35c25 0 39 10 39 28 0 12-8 22-22 26 17 4 27 15 27 31 0 22-17 34-44 34H94v-6h8V83h-8zm26 7v43h7c16 0 24-7 24-22 0-14-8-21-25-21zm0 51v54h8c18 0 27-9 27-27 0-17-9-27-27-27z"/>
+</svg>

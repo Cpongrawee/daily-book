@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  background: #f3ead6;
+  color: #442e29;
+  font:
+    17px/1.8 'Segoe UI',
+    'Leelawadee UI',
+    sans-serif;
+}
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff9ed;
+  border: 1px solid #cfb890;
+  border-radius: 14px;
+}
+h1,
+h2 {
+  color: #702e3c;
+  line-height: 1.35;
+}
+li {
+  margin: 18px 0;
+}
+a {
+  color: #702e3c;
+}
+strong {
+  font-weight: 650;
+}
+@media (max-width: 700px) {
+  main {
+    margin: 16px;
+    padding: 20px;
+  }
+  body {
+    font-size: 16px;
+  }
+  ol {
+    padding-left: 24px;
+  }
+}

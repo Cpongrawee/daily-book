@@ -1,0 +1,15 @@
+{
+  "name": "daily-book",
+  "private": true,
+  "description": "A local-first daily planner and journal: schedule, goals, reflections, mood & sleep charts, habit dashboard, insights and Google Calendar sync. Node.js server with no runtime dependencies.",
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node --test \"tests/*.test.cjs\"",
+    "qa": "node tests/run-qa.cjs",
+    "check": "npm test && npm run qa",
+    "format": "npx --yes prettier@3.3.3 --write \"*.cjs\" \"dist/*.js\" \"dist/*.css\" \"tests/*.cjs\""
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

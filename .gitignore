@@ -1,0 +1,14 @@
+# Personal journal, backups and Google credentials: never commit
+/data/
+
+# Leftovers from calendar tests (fake credentials)
+/tests/calendar-sync-*/
+/tests/calendar-browser-*/
+
+# Generated QA screenshots and print previews
+/tests/**/*.png
+/tests/**/*.pdf
+
+*.lnk
+*.tmp
+node_modules/

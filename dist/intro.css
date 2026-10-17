@@ -1,0 +1,292 @@
+/* Local image textures on separate hinged book surfaces. */
+html.book-opening {
+  overflow: hidden;
+  background: #271318;
+}
+.book-opening body > :not(#book-intro) {
+  visibility: hidden;
+}
+#book-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 38%, #70413a 0%, #382026 48%, #1d1117 100%);
+  color: #dfcca0;
+}
+.intro-light {
+  position: absolute;
+  width: 80vw;
+  height: 70vh;
+  background: radial-gradient(ellipse, #b08d5724, transparent 65%);
+  filter: blur(25px);
+}
+.intro-stage {
+  width: min(42vw, 390px, 56vh);
+  aspect-ratio: 3/4;
+  perspective: 1800px;
+}
+/* Reveal the whole finished book atomically, after images and font are decoded. */
+#book-intro:not(.intro-playing) .intro-stage {
+  visibility: hidden;
+}
+.intro-book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(3deg) rotateY(-7deg);
+}
+.intro-back,
+.intro-block,
+.intro-cover,
+.intro-leaf {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px 7px 7px 3px;
+}
+.intro-back {
+  background: #54212a;
+  transform: translateZ(-28px);
+  box-shadow:
+    18px 32px 50px #0009,
+    0 0 0 2px #9d7443;
+}
+.intro-block {
+  inset: 5px 0 5px 3px;
+  background: repeating-linear-gradient(0deg, #c4ab7c 0 1px, #f7f0df 1px 3px);
+  transform: translate3d(9px, 5px, -15px);
+  box-shadow:
+    inset -5px 0 8px #68482966,
+    3px 4px 0 #54212a;
+}
+.intro-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -7%;
+  width: 8%;
+  background: repeating-linear-gradient(0deg, #54212a 0 16%, #b08d57 17%, #371420 19%);
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #a8844d;
+  box-shadow: inset 6px 0 8px #19080a77;
+  transform: translateZ(-3px);
+}
+.intro-spine-loaded .intro-spine {
+  background-image: url('/intro-spine-v2.png');
+  background-size: 100% 100%;
+}
+.intro-cover {
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transform: translateZ(1px);
+}
+.intro-cover-front,
+.intro-cover-inside {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 3px 7px 7px 3px;
+}
+.intro-cover-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 40%, #803c43, #54212a);
+  border: 2px solid #b08d57;
+  box-shadow:
+    inset 0 0 0 7px #421923,
+    inset 0 0 0 9px #b08d5777,
+    3px 3px 0 #39151d,
+    5px 5px 0 #9b7448;
+}
+.intro-cover-loaded .intro-cover-front {
+  background-image: url('/intro-cover-v2.png');
+  background-size: 100% 100%;
+  box-shadow:
+    3px 3px 0 #39151d,
+    5px 5px 0 #9b7448;
+}
+#book-intro .intro-cover-front p {
+  position: relative;
+  margin: 0;
+  width: 73%;
+  text-align: center;
+  font-family: var(--book-font) !important;
+  font-size: clamp(18px, 2.5vw, 29px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: #f0d79e;
+  text-shadow: 0 2px 2px #20090b;
+  letter-spacing: 0.1px;
+}
+.intro-cover-inside {
+  transform: rotateY(180deg);
+  background: linear-gradient(90deg, #dac8a3, #f7f0df 15%, #eddfc0);
+  border: 10px solid #54212a;
+  box-shadow: inset 0 0 18px #76573766;
+}
+.intro-leaf {
+  inset: 5px 4px 5px 5px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #b9a077, #f7f0df 9%, #f1e5c9 92%, #d9c8a4);
+  border: 1px solid #cdb88e;
+  backface-visibility: visible;
+  box-shadow: 4px 4px 12px #24101830;
+}
+
+.intro-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #722f37;
+}
+.intro-final span {
+  font-size: clamp(32px, 6vw, 58px);
+}
+.intro-final small {
+  margin-top: 20px;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+.intro-skip {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background: #27131866;
+  border: 1px solid #b08d5766;
+  color: #dfcca0;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 30px;
+}
+.intro-skip:hover {
+  background: #722f37;
+  color: #f7f0df;
+}
+.intro-skip:focus-visible {
+  outline: 2px solid #dfcca0;
+  outline-offset: 4px;
+}
+.intro-playing {
+  animation: intro-reveal var(--intro-reveal-duration) var(--intro-reveal-at) ease-in both;
+}
+.intro-playing .intro-book {
+  animation: intro-settle var(--intro-cover-duration) var(--intro-hold) ease-in-out forwards;
+}
+.intro-playing .intro-cover {
+  animation: intro-turn var(--intro-cover-duration) var(--intro-hold) cubic-bezier(0.4, 0, 0.3, 1) forwards;
+}
+.intro-playing .intro-leaf:not(.intro-final) {
+  animation: intro-page-turn var(--leaf-duration) var(--leaf-at) ease-in-out forwards;
+}
+.intro-reduced {
+  animation: intro-fade 0.3s ease-out both;
+}
+@keyframes intro-settle {
+  to {
+    transform: translateX(42%) rotateX(3deg) rotateY(0);
+  }
+}
+@keyframes intro-turn {
+  to {
+    transform: translateZ(1px) rotateY(-165deg);
+  }
+}
+@keyframes intro-page-turn {
+  0% {
+    transform: rotateY(0);
+  }
+  50% {
+    box-shadow: 20px 5px 30px #24101850;
+  }
+  100% {
+    transform: rotateY(-164deg);
+  }
+}
+@keyframes intro-reveal {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+@keyframes intro-fade {
+  to {
+    opacity: 0;
+  }
+}
+@media (max-width: 600px) {
+  .intro-stage {
+    width: min(76vw, 52vh);
+  }
+  #book-intro .intro-cover-front p {
+    font-size: clamp(18px, 5.4vw, 27px);
+  }
+  @keyframes intro-settle {
+    to {
+      transform: translateX(30%) scale(0.58) rotateY(0);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-playing {
+    animation: intro-fade 0.3s ease-out both;
+  }
+  .intro-playing .intro-book,
+  .intro-playing .intro-cover,
+  .intro-playing .intro-leaf {
+    animation: none !important;
+  }
+}
+@media print {
+  #book-intro {
+    display: none !important;
+  }
+  .book-opening body > * {
+    visibility: visible;
+  }
+}
+/* Separate recto/verso surfaces keep formula handwriting readable after a turn. */
+.intro-leaf:not(.intro-final) {
+  transform-style: preserve-3d;
+  background: none;
+}
+.intro-page-face {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backface-visibility: hidden;
+  background-color: #f7f0df;
+  background-size: 100% 100%;
+  box-shadow: inset 7px 0 12px #8b71402b;
+}
+.intro-page-front {
+  transform: translateZ(0.2px);
+}
+.intro-page-back {
+  transform: rotateY(180deg) translateZ(0.2px);
+}
+.intro-page-face {
+  background: radial-gradient(ellipse at 55% 35%, #faf4e5, #efe1bf);
+  overflow: hidden;
+}
+.intro-formulas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#book-intro .intro-formulas text {
+  font-family: 'Cambria Math', 'Times New Roman', serif !important;
+  font-size: 15.3px;
+  font-weight: 400;
+  fill: #583e26;
+  letter-spacing: 0.1px;
+}
