@@ -12,3 +12,7 @@
 *.lnk
 *.tmp
 node_modules/
+
+# Understand-Anything knowledge graph (local analysis output)
+/.ua/
+/.understand-anything/
